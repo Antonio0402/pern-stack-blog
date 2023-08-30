@@ -36,7 +36,7 @@ const __dirname = path.resolve();
 
 const port = process.env.PORT || 5001;
 const app = express();
-app.use(express.static(path.join(__dirname, "../client/dist")))
+// app.use(express.static(path.join(__dirname, "../client/dist")));
 
 //* Creating new tokens for id and origin to set log format
 morgan.token('id', function getId(req: Request) {
@@ -112,9 +112,9 @@ app.use(expressSession({
  * -------------- ROUTES ----------------
  */
 
-app.get("^/$|index(.html)?", (_req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"))
-})
+// app.get("^/$|index(.html)?", (_req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/dist/index.html"))
+// })
 
 const apiRoute = express.Router();
 app.use("/api/v1", apiRoute)
