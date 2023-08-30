@@ -3,7 +3,7 @@ import { Post } from "../store";
 import posts from "../data/posts.json";
 
 const BASE_URL = import.meta.env.MODE === "production"
-  ? "https://pern-stack-blog-340de8e0841d.herokuapp.com/api/v1"
+  ? "https://fullstack-blog-api.onrender.com/api/v1"
   : "http://localhost:5001/api/v1"
 
 const blogApi = axios.create({
