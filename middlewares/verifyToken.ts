@@ -8,10 +8,10 @@ const saltRounds = 10;
 const ALGORITHM = "RS256";
 
 const CLIENT_ORIGIN_URL = process.env.NODE_ENV === "production"
-  ? "https://pern-stack-blog-340de8e0841d.herokuapp.com"
+  ? "https://fullstack-blog-client.onrender.com"
   : "http://localhost:4040";
 const SERVER_ORIGIN_URL = process.env.NODE_ENV === "production"
-  ? "https://pern-stack-blog-340de8e0841d.herokuapp.com/api/v1"
+  ? "https://fullstack-blog-api.onrender.com/api/v1"
   : "http://localhost:5001/api/v1";
 
 export async function bCryptGenPass(password: string) {
