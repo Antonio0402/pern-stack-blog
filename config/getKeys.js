@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.pubRefreshKey = exports.privRefreshKey = exports.pubAccessKey = exports.privAccessKey = void 0;
+var path = require("node:path");
+var fs = require("node:fs");
+var __dirname = path.resolve();
+var pathToPrivIDKey = path.join(__dirname, "id_rsa_priv.pem");
+var pathToPubIDkey = path.join(__dirname, "id_rsa_pub.pem");
+var pathToPrivRefKey = path.join(__dirname, "ref_rsa_priv.pem");
+var pathToPubRefkey = path.join(__dirname, "ref_rsa_pub.pem");
+exports.privAccessKey = fs.readFileSync(pathToPrivIDKey);
+exports.pubAccessKey = fs.readFileSync(pathToPubIDkey);
+exports.privRefreshKey = fs.readFileSync(pathToPrivRefKey);
+exports.pubRefreshKey = fs.readFileSync(pathToPubRefkey);
