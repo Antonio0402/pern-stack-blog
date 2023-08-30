@@ -1,0 +1,35 @@
+@use "../global" as *;
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+.wrapper {
+  @include apply-utility("width", "full");
+  max-width: get-size("3xl");
+  margin-inline: auto;
+}
+
+.flow > * + * {
+  margin-top: var(--flow-space, 1rem);
+}
+
+.col-flow {
+  display: flex;
+  flex-direction: column;
+  @include apply-utility("gap", "s");
+}
+
+@mixin col-group($gap) {
+  display: flex;
+  flex-direction: column;
+  @include apply-utility("gap", $gap);
+}

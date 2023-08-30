@@ -1,0 +1,202 @@
+@use "sass:map";
+@use "sass:math";
+/*
+ * BASE SIZE
+ * All calculations are based on this. It’s recommended that
+ * you keep it at 1rem because that is the root font size. You
+ * can set it to whatever you like and whatever unit you like.
+ */
+$gorko-base-size: 1rem;
+
+/*
+   * SIZE SCALE
+   * This is a Major Third scale that powers all the utilities that
+   * it is relevant for (font-size, margin, padding). All items are
+   * calcuated off the base size, so change that and cascade across
+   * your whole project.
+   */
+$gorko-font-scale: (
+  "200": clamp(0.52rem, calc(0.46rem + 0.2vw), 0.64rem),
+  "300": clamp(0.63rem, calc(0.54rem + 0.29vw), 0.8rem),
+  "400": clamp(0.75rem, calc(0.63rem + 0.42vw), 1rem),
+  "500": clamp(0.9rem, calc(0.73rem + 0.58vw), 1.25rem),
+  "600": clamp(1.08rem, calc(0.84rem + 0.8vw), 1.56rem),
+  "700": clamp(1.3rem, calc(0.97rem + 1.09vw), 1.95rem),
+  "800": clamp(1.56rem, calc(1.11rem + 1.48vw), 2.44rem),
+  "900": clamp(1.87rem, calc(1.27rem + 1.98vw), 3.05rem),
+);
+
+$gorko-size-scale: (
+  "3xs": clamp(0.25rem, calc(0.23rem + 0.09vw), 0.31rem),
+  "2xs": clamp(0.5rem, calc(0.46rem + 0.18vw), 0.63rem),
+  "xs": clamp(0.75rem, calc(0.7rem + 0.27vw), 0.94rem),
+  "s": clamp(1rem, calc(0.93rem + 0.36vw), 1.25rem),
+  "m": clamp(1.5rem, calc(1.39rem + 0.54vw), 1.88rem),
+  "l": clamp(2.5rem, calc(2.32rem + 0.89vw), 3.13rem),
+  "xl": clamp(5rem, calc(4.64rem + 1.79vw), 6.25rem),
+  "2xl": clamp(10rem, calc(9.29rem + 3.57vw), 12.5rem),
+  "3xl": clamp(51rem, calc(47.36rem + 18.21vw), 63.75rem),
+);
+
+$gorko-leading-scale: (
+  "none": 1,
+  "tight": 1.25,
+  "snug": 1.375,
+  "normal": 1.5,
+  "relaxed": 1.625,
+  "loose": 1.875,
+);
+
+$gorko-border-scale: (
+  "sm": 1px,
+  "md": 3px,
+  "lg": 5px,
+);
+
+$gorko-radius-scale: (
+  "sm": 0.2em,
+  "md": 0.4em,
+  "lg": 0.8em,
+  "half": 50%,
+  "full": 100em,
+);
+
+/*
+   * COLORS
+   * Colors are shared between backgrounds and text by default. 
+   * You can also use them to power borders, fills or shadows, for example.
+   */
+$gorko-colors: (
+  "primary": #b9e7e7,
+  "secondary": teal,
+  "gray-200": #333,
+  "gray-300": #555,
+);
+
+/* 
+   !!! REQUIRED
+   * CORE CONFIG
+   * This powers everything from utility class generation to breakpoints
+   * to enabling/disabling pre-built components/utilities.
+   */
+$gorko-config: (
+  "css-vars": (
+    "colors": $gorko-colors,
+  ),
+  "bg": (
+    "items": $gorko-colors,
+    "output": "standard",
+    "property": "background",
+  ),
+  /*
+    * use CSS Custom Properties instead of static references to tokens 
+   */
+    "color":
+    (
+      "items": "colors",
+      "css-vars": true,
+      "output": "standard",
+      "property": "color",
+    ),
+  "font": (
+    "items": (
+      "sans": '"Open Sans", sans-serif',
+    ),
+    "output": "standard",
+    "property": "font-family",
+  ),
+  "gap": (
+    "items": $gorko-size-scale,
+    "output": "standard",
+    "property": "gap",
+  ),
+  "mt": (
+    "items": $gorko-size-scale,
+    "output": "standard",
+    "property": "margin-top",
+  ),
+  "mb": (
+    "items": $gorko-size-scale,
+    "output": "standard",
+    "property": "margin-bottom",
+  ),
+  "py": (
+    "items": $gorko-size-scale,
+    "output": "standard",
+    "property": "padding-block",
+  ),
+  "px": (
+    "items": $gorko-size-scale,
+    "output": "standard",
+    "property": "padding-inline",
+  ),
+  "p": (
+    "items": $gorko-size-scale,
+    "output": "standard",
+    "property": "padding",
+  ),
+  "border": (
+    "items": $gorko-border-scale,
+    "output": "standard",
+    "property": "border-width",
+  ),
+  "rounded": (
+    "items": $gorko-radius-scale,
+    "output": "standard",
+    "property": "border-radius",
+  ),
+  "leading": (
+    "items": $gorko-leading-scale,
+    "output": "standard",
+    "property": "line-height",
+  ),
+  "text": (
+    "items": $gorko-font-scale,
+    "output": "standard",
+    "property": "font-size",
+  ),
+  "fw": (
+    "items": (
+      "light": 300,
+      "normal": 400,
+      "medium": 500,
+      "semi-bold": 600,
+      "bold": 700,
+      "extra-bold": 800,
+    ),
+    "output": "standard",
+    "property": "font-weight",
+  ),
+  "stack": (
+    "items": (
+      "0": 0,
+      "10": 10,
+      "20": 20,
+      "30": 30,
+      "40": 40,
+    ),
+    "output": "standard",
+    "property": "z-index",
+  ),
+  "width": (
+    "items":
+      map-merge(
+        $gorko-size-scale,
+        (
+          "full": "100%",
+          "half": percentage(math.div(1, 2)),
+          "quarter": percentage(math.div(1, 4)),
+          "third": percentage(math.div(1, 3)),
+        )
+      ),
+    "output": "responsive",
+    "property": "width",
+  ),
+  "breakpoints": (
+    "sm": "(min-width: 640px)",
+    "md": "(min-width: 768px)",
+    "lg": "(min-width: 1024px)",
+    "xl": "(min-width: 1280px)",
+    "xxl": "(min-width: 1440px)",
+  ),
+);

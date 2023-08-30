@@ -1,0 +1,302 @@
+@use "../global" as *;
+@use "../utilities" as *;
+
+.header__logo {
+  width: calc(get-size("m") * 4);
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: get-size("xl");
+  padding: get-size("s");
+  background-color: get-color("primary");
+  font-size: get-utility-value("text", "300");
+
+  img {
+    width: auto;
+    height: get-size("l");
+  }
+}
+
+.btn {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.btn[data-style="create"] {
+  background-color: get-color("primary");
+  width: get-size("l");
+  height: get-size("l");
+  border: 1px solid white;
+  text-align: center;
+  font-size: get-utility-value("text", "300");
+  @include apply-utility("rounded", "half");
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: get-color("secondary");
+    background-color: white;
+    border: 1px solid get-color("secondary");
+  }
+}
+
+.btn[data-style="read"] {
+  @include apply-utility("py", "2xs");
+  @include apply-utility("px", "s");
+  border: none;
+  width: max-content;
+  background-color: white;
+  @include apply-utility("border", "sm");
+  border-style: solid;
+  border-color: get-color("secondary");
+
+  &:hover {
+    border-color: white;
+    @include apply-utility("bg", "primary");
+    color: black;
+  }
+}
+
+.btn[data-style="auth"] {
+  border: none;
+  color: white;
+  @include apply-utility("bg", "secondary");
+  @include apply-utility("p", "2xs");
+}
+
+.btn[data-style="edit"] {
+  @include apply-utility("py", "2xs");
+  @include apply-utility("px", "xs");
+  @include apply-utility("color", "secondary");
+  background-color: white;
+  border: none;
+  border: 1px solid teal;
+
+  &:hover {
+    border-color: white;
+    color: black;
+    @include apply-utility("bg", "primary");
+  }
+}
+
+.btn[data-style="save"] {
+  border: 1px solid teal;
+  padding: 0.25rem 0.375rem;
+}
+
+.post__img {
+  flex-basis: 2/5;
+  position: relative;
+  @include apply-utility("width", "full");
+  height: #{get-utility-value("width", "full")};
+  max-height: calc(get-size("2xl") * 2);
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    @include apply-utility("bg", "primary");
+    position: absolute;
+    top: get-size("m");
+    left: calc(get-size("m") * -1);
+    z-index: -1;
+  }
+
+  & > img {
+    @include apply-utility("width", "full");
+    height: #{get-utility-value("width", "full")};
+    max-height: calc(get-size("2xl") * 2);
+    object-fit: cover;
+  }
+}
+
+.post__content {
+  flex-basis: 3/5;
+  @extend .col-flow;
+  justify-content: space-between;
+}
+
+.auth__title {
+  @include apply-utility("text", "500");
+  @include apply-utility("color", "secondary");
+  margin-bottom: get-size("s");
+}
+
+.auth__form {
+  background-color: white;
+  width: calc(get-size("2xl") * 2);
+  @extend .col-flow;
+  @include apply-utility("p", "l");
+
+  input {
+    border: none;
+    border-bottom: 1px solid gray;
+    @include apply-utility("p", "s");
+  }
+
+  p {
+    text-align: center;
+    color: red;
+    @include apply-utility("text", "300");
+  }
+
+  span {
+    text-align: center;
+    @include apply-utility("text", "300");
+  }
+}
+
+.singple-post__content {
+  flex: 5;
+  img {
+    width: 100%;
+    height: calc(get-size("xl") * 3);
+    object-fit: cover;
+  }
+
+  h1 {
+    @include apply-utility("text", "900");
+    @include apply-utility("color", "gray-200");
+  }
+
+  p {
+    text-align: justify;
+    @include apply-utility("leading", "loose");
+  }
+}
+
+.singple-post__user {
+  @include apply-utility("text", "400");
+
+  img {
+    width: get-size("l");
+    height: get-size("l");
+    @include apply-utility("rounded", "half");
+    object-fit: cover;
+  }
+  span {
+    @include apply-utility("fw", "bold");
+  }
+}
+
+.single-post__edit {
+  img {
+    width: get-size("s");
+    height: get-size("s");
+    cursor: pointer;
+  }
+}
+
+.menu__post {
+  img {
+    width: 100%;
+    height: get-size("2xl");
+    object-fit: cover;
+  }
+
+  h2 {
+    @include apply-utility("color", "gray-300");
+  }
+}
+
+.error {
+  margin: get-size("m");
+  padding: get-size("xs");
+  background-color: whitesmoke;
+  @include apply-utility("text", "600");
+  border-radius: get-size("2xs");
+
+  & > pre {
+    color: firebrick;
+    @include apply-utility("text", "500");
+  }
+
+  & > button {
+    padding: get-size("3xs");
+    border-radius: get-size("2xs");
+    margin-top: get-size("xs");
+    @include apply-utility("text", "300");
+  }
+}
+
+.text-editor {
+  min-height: 300px;
+  height: 100%;
+  overflow: scroll;
+  border: 1px solid lightgray;
+
+  .editor {
+    height: 100%;
+    border: none;
+  }
+}
+
+.new-post__content {
+  flex: 5;
+  input {
+    @include apply-utility("p", "2xs");
+    border: 1px solid lightgray;
+  }
+}
+
+.new-post__menu {
+  flex: 2;
+}
+
+.new-post__item {
+  flex: 1;
+
+  h1 {
+    @include apply-utility("text", "500");
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+
+    :first-child {
+      @include apply-utility("color", "secondary");
+      background-color: white;
+
+      &:hover {
+        color: white;
+        @include apply-utility("bg", "secondary");
+      }
+    }
+
+    :last-child {
+      color: white;
+      @include apply-utility("bg", "secondary");
+
+      &:hover {
+        @include apply-utility("color", "secondary");
+        background-color: white;
+      }
+    }
+  }
+
+  .upload__label {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .category__item {
+    display: flex;
+    align-items: center;
+    @include apply-utility("gap", "2xs");
+    @include apply-utility("color", "secondary");
+
+    & > :is(input, label) {
+      cursor: pointer;
+    }
+  }
+}

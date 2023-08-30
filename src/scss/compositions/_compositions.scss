@@ -1,0 +1,120 @@
+@use "../global/" as *;
+@use "../utilities" as *;
+
+.app {
+  min-height: 100svh;
+  height: 100%;
+  display: grid;
+  margin-inline: auto;
+
+  .layout {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    @include apply-utility("gap", "s");
+  }
+}
+
+.header {
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .header__nav {
+      display: flex;
+      align-items: center;
+      gap: get-size("2xs");
+
+      a {
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+          text-decoration-color: get-color("primary");
+          text-underline-offset: 4px;
+        }
+      }
+
+      span {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.home__posts {
+  --flow-space: #{calc(get-size("l") * 3)};
+  display: flex;
+  flex-direction: column;
+  gap: get-size("l");
+
+  .post {
+    display: flex;
+    gap: get-size("xl");
+
+    &:nth-child(2n + 1) {
+      flex-direction: row-reverse;
+    }
+  }
+}
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100svh;
+  @include apply-utility("bg", "primary");
+}
+
+.single-post {
+  display: flex;
+  @include apply-utility("gap", "l");
+
+  &__content {
+    @include col-group("m");
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    @include apply-utility("gap", "2xs");
+  }
+
+  &__edit {
+    display: flex;
+    @include apply-utility("gap", "3xs");
+  }
+}
+
+.menu {
+  @include col-group("xs");
+
+  &__post {
+    @include col-group("2xs");
+  }
+}
+
+.new-post {
+  display: flex;
+  @include apply-utility("gap", "s");
+
+  &__content {
+    @extend .col-flow;
+  }
+
+  &__menu {
+    @extend .col-flow;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid lightgray;
+    @include apply-utility("gap", "2xs");
+    @include apply-utility("p", "2xs");
+    @include apply-utility("text", "300");
+    @include apply-utility("color", "gray-300");
+  }
+}

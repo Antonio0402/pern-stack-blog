@@ -1,0 +1,51 @@
+{
+  "name": "client",
+  "private": true,
+  "version": "0.0.0",
+  "engines": {
+    "node": "20.0.0"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run watch:sass\" \"vite\"",
+    "watch:sass": "npx sass src/scss/cube.scss src/scss/cube.css --watch",
+    "build": "tsc && vite build",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "postinstall": "npm run build",
+    "serve-heroku": "vite --host 0.0.0.0 --port $PORT preview"
+  },
+  "dependencies": {
+    "@tanstack/query-core": "^4.29.14",
+    "@tanstack/react-query": "^4.29.14",
+    "axios": "^1.4.0",
+    "dompurify": "^3.0.3",
+    "gorko": "^0.9.1",
+    "jotai": "^2.2.0",
+    "jotai-optics": "^0.3.0",
+    "jotai-tanstack-query": "^0.7.1",
+    "moment": "^2.29.4",
+    "optics-ts": "^2.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.10",
+    "react-quill": "^2.0.0",
+    "react-router-dom": "^6.13.0",
+    "sass-embedded": "^1.62.0",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@types/dompurify": "^3.0.2",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.0.11",
+    "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "concurrently": "^8.2.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "vite": "^4.3.9"
+  }
+}
